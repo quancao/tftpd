@@ -19,6 +19,10 @@
 #include <syslog.h>
 #include "tftpd.h"
 
+#undef syslog
+#define syslog(lvl, fmt, ...) do {\
+    fprintf(stderr, fmt, ##__VA_ARGS__);\
+}while(0)
 /*
  * Set the signal handler and flags.  Basically a user-friendly
  * wrapper around sigaction().

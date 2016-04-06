@@ -23,6 +23,11 @@
 #include "tftpd.h"
 #include "remap.h"
 
+#undef syslog
+#define syslog(lvl, fmt, ...) do{\
+   fprintf(stderr, fmt, ##__VA_ARGS__);\
+}while(0)
+
 #define DEADMAN_MAX_STEPS	1024    /* Timeout after this many steps */
 #define MAXLINE 		16384   /* Truncate a line at this many bytes */
 

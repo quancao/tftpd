@@ -66,6 +66,11 @@ static const char *rcsid UNUSED =
 #include "recvfrom.h"
 #include "remap.h"
 
+#undef syslog
+#define syslog(level, fmt, ...) do {\
+    fprintf(stderr, fmt, ##__VA_ARGS__);\
+}while(0)
+
 #ifdef HAVE_SYS_FILIO_H
 #include <sys/filio.h>		/* Necessary for FIONBIO on Solaris */
 #endif
@@ -476,6 +481,8 @@ main(int argc, char **argv)
 
     /* Daemonize this process */
     {
+      syslog(LOG_ERR, "become daemonize now .... \n");
+#if 0
       pid_t f = fork();
       int nfd;
       if ( f > 0 )
@@ -501,6 +508,7 @@ main(int argc, char **argv)
       }
 #ifdef HAVE_SETSID
       setsid();
+#endif
 #endif
     }
   } else {
@@ -553,6 +561,7 @@ main(int argc, char **argv)
 
     /* Never time out if we're in standalone mode */
     rv = select(fd+1, &readset, NULL, NULL, standalone ? NULL : &tv_waittime);
+    syslog(LOG_INFO, "return from select: rv=%d \n", rv);
     if ( rv == -1 && errno == EINTR )
       continue;		/* Signal caught, reloop */
     if ( rv == -1 ) {
