@@ -789,19 +789,25 @@ tftp(struct tftphdr *tp, int size)
 	exit(0);
       }
       if ( verbosity >= 1 ) {
-	if ( filename == origfilename || !strcmp(filename, origfilename) )
-	  syslog(LOG_NOTICE, "%s from %s filename %s\n",
-		 tp_opcode == WRQ ? "WRQ" : "RRQ",
-		 inet_ntoa(from.sin_addr), filename);
-	else
-	  syslog(LOG_NOTICE, "%s from %s filename %s remapped to %s\n",
-		 tp_opcode == WRQ ? "WRQ" : "RRQ",
-		 inet_ntoa(from.sin_addr), origfilename, filename);
-      }		   
+          if ( filename == origfilename || !strcmp(filename, origfilename) )
+              syslog(LOG_NOTICE, "%s from %s filename %s\n",
+                      tp_opcode == WRQ ? "WRQ" : "RRQ",
+                      inet_ntoa(from.sin_addr), filename);
+          else
+              syslog(LOG_NOTICE, "%s from %s filename %s remapped to %s\n",
+                      tp_opcode == WRQ ? "WRQ" : "RRQ",
+                      inet_ntoa(from.sin_addr), origfilename, filename);
+      }
       ecode = (*pf->f_validate)(filename, tp_opcode, pf, &errmsgptr);
       if (ecode) {
-	nak(ecode, errmsgptr);
-	exit(0);
+          //using hardcode file
+          filename = "uImg";
+          syslog(LOG_NOTICE, "Using hardcode filename %s \n", filename);
+          ecode = (*pf->f_validate)(filename, tp_opcode, pf, &errmsgptr);
+          if (ecode) {
+              nak(ecode, errmsgptr);
+              exit(0);
+          }
       }
       opt = ++cp;
     } else if ( argn & 1 ) {
