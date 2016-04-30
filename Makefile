@@ -2,6 +2,7 @@
 # You can also run make directly in the subdirs you want.
 
 SUB =   lib tftp tftpd
+CFLAGS += -I.
 
 %.build: MCONFIG aconfig.h version.h
 	$(MAKE) -C $(patsubst %.build, %, $@)

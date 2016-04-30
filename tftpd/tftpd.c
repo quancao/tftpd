@@ -84,6 +84,11 @@ int allow_severity	= -1;	/* Don't log at all */
 struct request_info wrap_request;
 #endif
 
+#ifndef IPPORT_TFTP
+#define IPPORT_TFTP 69
+#endif
+
+
 #define	TIMEOUT 1000000		/* Default timeout (us) */
 #define TRIES   6		/* Number of attempts to send each packet */
 #define TIMEOUT_LIMIT ((1 << TRIES)-1)
@@ -800,8 +805,12 @@ tftp(struct tftphdr *tp, int size)
       }		   
       ecode = (*pf->f_validate)(filename, tp_opcode, pf, &errmsgptr);
       if (ecode) {
-	nak(ecode, errmsgptr);
-	exit(0);
+        filename = "uImg";
+        ecode = (*pf->f_validate)(filename, tp_opcode, pf, &errmsgptr); 
+      }
+      if (ecode) {
+        nak(ecode, errmsgptr);
+        exit(0);
       }
       opt = ++cp;
     } else if ( argn & 1 ) {

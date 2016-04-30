@@ -4,6 +4,7 @@ VERSION = $(shell cat ../version)
 -include ../MCONFIG
 include ../MRULES
 
+CFLAGS += -I..
 OBJS = tftpd.$(O) tftpsubs.$(O) recvfrom.$(O) misc.$(O) $(TFTPDOBJS)
 
 all: tftpd$(X) tftpd.8
