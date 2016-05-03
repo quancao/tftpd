@@ -32,7 +32,7 @@
 #define HAVE_INTTYPES_H 1
 
 /* Define if netinet/in.h defines IPPORT_TFTP */
-#define HAVE_IPPORT_TFTP_DEFINITION 1
+/* #undef HAVE_IPPORT_TFTP_DEFINITION */
 
 /* Define to 1 if you have the <libgen.h> header file. */
 #define HAVE_LIBGEN_H 1
@@ -44,7 +44,7 @@
 #define HAVE_LONG_LONG 1
 
 /* Define to 1 if you have the <machine/param.h> header file. */
-/* #undef HAVE_MACHINE_PARAM_H */
+#define HAVE_MACHINE_PARAM_H 1
 
 /* Define to 1 if you have the <memory.h> header file. */
 #define HAVE_MEMORY_H 1
@@ -56,7 +56,7 @@
 /* #undef HAVE_O_BINARY_DEFINITION */
 
 /* Define if fcntl.h defines O_NONBLOCK */
-#define HAVE_O_NONBLOCK_DEFINITION 1
+/* #undef HAVE_O_NONBLOCK_DEFINITION */
 
 /* Define if fcntl.h defines O_TEXT */
 /* #undef HAVE_O_TEXT_DEFINITION */
@@ -113,7 +113,7 @@
 #define HAVE_SYSEXITS_H 1
 
 /* Define to 1 if you have the <sys/filio.h> header file. */
-/* #undef HAVE_SYS_FILIO_H */
+#define HAVE_SYS_FILIO_H 1
 
 /* Define to 1 if you have the <sys/socket.h> header file. */
 #define HAVE_SYS_SOCKET_H 1
@@ -179,7 +179,7 @@
 #define TIME_WITH_SYS_TIME 1
 
 /* Define if we are compiling with readline command-line editing. */
-/* #undef WITH_READLINE */
+#define WITH_READLINE 1
 
 /* Define if we are compiling with regex filename remapping. */
 #define WITH_REGEX 1

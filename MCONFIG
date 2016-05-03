@@ -16,8 +16,8 @@
 ##
 
 # Source and object root
-SRCROOT	    = /raid0/work/tools/tftp-hpa-0.40
-OBJROOT     = /raid0/work/tools/tftp-hpa-0.40
+SRCROOT	    = /Users/caoducquan/work/tools/tftpd/tftpd
+OBJROOT     = /Users/caoducquan/work/tools/tftpd/tftpd
 
 # Prefixes
 prefix      = /usr
@@ -43,20 +43,20 @@ INSTALLROOT =
 LN_S            = ln -s
 
 # Install program
-INSTALL         = /usr/bin/install -c
+INSTALL         = /usr/local/bin/ginstall -c
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_DATA    = ${INSTALL} -m 644
 
 # Compiler and compiler flags
 CC      = gcc
-CFLAGS  = -g -O2 -D_XPG4_2 -D_XOPEN_SOURCE -D__EXTENSIONS__ -D_BSD_SOURCE -D_ISO9X_SOURCE -D_OSF_SOURCE -D_XOPEN_SOURCE_EXTENDED -W -Wall -Wpointer-arith -Wbad-function-cast -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wnested-externs -Winline -Wwrite-strings -Wundef -Wshadow -Wsign-compare -pipe -fno-strict-aliasing -I$(SRCROOT)
+CFLAGS  = -g -O2 -D_XPG4_2 -D_XOPEN_SOURCE -D__EXTENSIONS__ -D_BSD_SOURCE -D_ISO9X_SOURCE -D_OSF_SOURCE -D_XOPEN_SOURCE_EXTENDED -W -Wall -Wpointer-arith -Wbad-function-cast -Wcast-equal -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wnested-externs -Winline -Wwrite-strings -Wundef -Wshadow -Wsign-compare -pipe -fno-strict-aliasing -I$(SRCROOT)
 
 # Link flags
 LDFLAGS = 
 
 # Libraries (client and server)
-TFTP_LIBS  = -ltermcap  /raid0/work/tools/tftp-hpa-0.40/lib/libxtra.a 
-TFTPD_LIBS = -lnsl  /raid0/work/tools/tftp-hpa-0.40/lib/libxtra.a 
+TFTP_LIBS  = -lreadline -ltermcap  /Users/caoducquan/work/tools/tftpd/tftpd/lib/libxtra.a 
+TFTPD_LIBS =  /Users/caoducquan/work/tools/tftpd/tftpd/lib/libxtra.a 
 
 # Additional library we need to build
 LIBOBJS	=  xmalloc$U.o xstrdup$U.o
